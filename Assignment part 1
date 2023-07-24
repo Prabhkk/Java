@@ -1,0 +1,55 @@
+public class Manager {
+    public static void main(String[] args) {
+        Driver John = new Driver("John");
+        John.getGoing();
+    }
+}
+
+class Car {
+    private boolean isRunning;
+
+    public boolean startCar() {
+        isRunning = true;
+        System.out.println("The car has started.");
+        return true;
+    }
+
+    public boolean stopCar() {
+        isRunning = false;
+        System.out.println("The car has stopped.");
+        return true;
+    }
+
+    public void honkHorn() {
+        if (isRunning) {
+            System.out.println("Honk! Honk!");
+        } else {
+            System.out.println("Cannot honk. The car is not running.");
+        }
+    }
+}
+
+class Driver {
+    private String name;
+    private Car Tesla;
+	
+
+    public Driver(String name) {
+        this.name = name;
+        Tesla = new Car();
+    }
+
+    public void getGoing() {
+        Tesla.startCar();
+        System.out.println(name + " is driving the car.");
+        // Simulate driving for 5 seconds
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Tesla.stopCar();
+        System.out.println(name + " has stopped the car.");
+        Tesla.honkHorn();
+    }
+}
